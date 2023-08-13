@@ -7,4 +7,4 @@ const userSchema = new mongoose.Schema({
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: "Post"}]
 })
 
-module.exports = mongoose.Model("User", userSchema)
+module.exports = mongoose.model("User", userSchema)
