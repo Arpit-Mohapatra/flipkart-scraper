@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  flipkartUrl: { type: String, unique: true },
+  flipkartUrl: { type: String, required: true },
   title: String,
   price: Number,
   description: String,
