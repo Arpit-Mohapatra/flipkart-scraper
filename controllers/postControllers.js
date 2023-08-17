@@ -4,7 +4,7 @@ const { default: axios } = require("axios")
 const cheerio = require("cheerio")
 
 const scraped = asyncHandler(async (req, res) => {
-    const allowedDomains = ['flipkart.com'];
+    const allowedDomains = ['flipkart.com', 'www.flipkart.com'];
     const {flipkartUrl} = req.body
 
     if(!flipkartUrl) {
@@ -39,7 +39,8 @@ const scraped = asyncHandler(async (req, res) => {
         const $ = cheerio.load(response.data)
         
         const title = $('h1.product-title').text();
-        const price = parseFloat($('span.product-price').text().replace(/[^\d.]/g, ''));
+        const priceText = $('span.product-price').text();
+        const price = parseFloat(priceText.replace(/[^\d.]/g, ''));
         const description = $('div.product-description').text();
         const numReviews = parseInt($('span.product-reviews').text());
         const ratings = parseFloat($('span.product-ratings').text());
